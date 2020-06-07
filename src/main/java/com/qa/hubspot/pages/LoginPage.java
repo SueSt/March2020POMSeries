@@ -7,6 +7,8 @@ import com.qa.hubspot.base.BasePage;
 import com.qa.hubspot.utils.Constants;
 import com.qa.hubspot.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class LoginPage extends BasePage {
 
 	private WebDriver driver;
@@ -24,15 +26,18 @@ public class LoginPage extends BasePage {
 	}
 
 	// 3.Create the page actions
+	@Step("get login Page Title....")// this annotation for Allure reports
 	public String getloginPageTitle() {
 		//using the reusable methods in the Elementutil class
 		return elementUtil.waitForTitleToBePresent(Constants.LOGIN_PAGE_TITLE, 10);
 	}
 
+	@Step("verify Sign Up Link...")// this annotation for Allure reports
 	public boolean verifySignUpLink() {
 		return elementUtil.doIsDisplayed(signUpLink);
 	}
-
+	
+	@Step("login to app with username: {0} and password: {1}...")// this annotation for Allure reports
 	public HomePage doLogin(String username, String password) {
 		elementUtil.waitForElementToBeVisible(this.username, 10);
 		elementUtil.doSendKeys(this.username, username);
